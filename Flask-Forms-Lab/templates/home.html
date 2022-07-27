@@ -12,14 +12,11 @@
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
 <ul id="myUL">
-  <li><a href="#">Adele</a></li>
-  <li><a href="#">Agnes</a></li>
-  <li><a href="#">Billy</a></li>
-  <li><a href="#">Bob</a></li>
-  <li><a href="#">Calvin</a></li>
-  <li><a href="#">Christina</a></li>
-  <li><a href="#">Cindy</a></li>
-  <li><a href="#">Loai</a></li>
+
+{% for name in friends_list %}
+    <li><a href="#">{{name}}</a></li>
+{% endfor %}
+
 </ul>
 
 <script>
@@ -39,6 +36,17 @@ function myFunction() {
         }
     }
 }
+
+<form action="/" method="POST">
+    <input type="text" name="firstname" placeholder="First Name">
+    <br>
+    I like
+    <input type="radio" name="animal" value="cats">cats
+    <input type="radio" name="animal" value="dogs">dogs
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
 </script>
 
 </body>

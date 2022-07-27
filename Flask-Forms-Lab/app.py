@@ -8,18 +8,28 @@ app = Flask(  # Create a flask app
 )
 
 
-username = "llo2ay"
-password = "123"
-facebook_friends=["Loai","Yonathan","Adan", "George", "Fouad", "Celina"]
+username = "LiaItzhakov0822"
+password = "87654"
+facebook_friends=["Ella","Polina","Lour", "Roei", "Mahmoud", "Yuval"]
 
 
-@app.route('/')  # '/' for the default page
+@app.route('/', methods=["GET", "POST"])
 def login():
-  return render_template('login.html')
+		error = None
+		if request.method == 'POST':
+			if request.form['username'] == username and request.form['password'] == password:
+				return render_template("home.html", friends_list=facebook_friends)
+			else:
+				error = 'Invalid Credentials. Please try again.'
+				return error
+		else: 
+			return render_template('login.html')
+
+@app.route('/friend_exist/<string:name>')
+def hello_name_route(name):
+    return render_template(
+        'friend_exists.html', n = name, facebook_friends= facebook_friends)
   
-
-
-
 if __name__ == "__main__":  # Makes sure this is the main process
 	app.run( # Starts the site
     debug=True
